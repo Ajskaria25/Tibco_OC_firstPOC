@@ -1,0 +1,18 @@
+# Use the BWCE base image
+FROM jvamane/bwce-baseimg:1.0
+ 
+# Set the working directory inside the container
+WORKDIR /opt/tibco/bwce/app/
+ 
+# Copy your BWCE EAR file into the container
+COPY POC1_1.0.0.ear .
+ 
+# Set the BWCE application name (DO NOT include the .ear extension)
+ENV BWCE_APP_NAME=POC1_1.0.0
+ 
+# Set environment variables (adjust as needed)
+ENV BW_PROFILE=default
+ENV JAVA_OPTS="-Xmx512m"
+ 
+# Run the BWCE application
+CMD ["/bin/sh", "-c", "bwce"]
